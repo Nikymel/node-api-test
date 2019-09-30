@@ -83,14 +83,14 @@ app.get('/api/users/:username', (req, res) => {
     // Check if user is in the mock db by username
     testDB.map((user) => {
         if (user.username === req.params.username) {
-            return app.status(201).send({
+            return res.status(201).send({
                 success: 'true',
                 message: 'user retrieved successfully',
                 data: user
             });
         }
 
-        return app.status(400).send({
+        return res.status(400).send({
             success: 'false',
             message: 'username not found',
             data: null
