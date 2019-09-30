@@ -15,18 +15,7 @@ app.use((req, res, next) => {
     next();
 });
 
-let testDB = [
-    {
-        username: 'Billy123',
-        name: 'Billy',
-        age: 20
-    },
-    {
-        username: 'TheLegend27',
-        name: 'John',
-        age: 27
-    }
-];
+let testDB = require('./db');
 
 // Get request for users
 app.get('/api/users', (req, res) => {
@@ -80,5 +69,5 @@ app.post('/api/users', (req, res) => {
 });
 
 app.listen(process.env.PORT || PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+    console.log(`Startup successful!`);
 });
