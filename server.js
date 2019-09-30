@@ -37,7 +37,17 @@ app.post('/api/users', (req, res) => {
         });
     }
 
-    else if (!req.body.name) {
+    testDB.map((user) => {
+        if (user.username === req.body.username) {
+            return res.status(400).send({
+                success: 'false',
+                message: 'username already exists in database',
+                data: null
+            });
+        }
+    });
+
+    if (!req.body.name) {
         return res.status(400).send({
             success: 'false',
             message: 'name is required',
@@ -63,9 +73,29 @@ app.post('/api/users', (req, res) => {
 
     return res.status(201).send({
         success: 'true',
-        message: 'user added succesfully',
+        message: 'user added successfully',
         data: user
     });
+});
+
+// Get one user from DB
+app.get('/api/users/:username', (req, res) => {
+    // Check if user is in the mock db by username
+    testDB.map((user) => {
+        if (user.username === req.params.username) {
+            return app.status(201).send({
+                success: 'true',
+                message: 'user retrieved successfully',
+                data: user
+            });
+        }
+
+        return app.status(400).send({
+            success: 'false',
+            message: 'username not found',
+            data: null
+        });
+    })
 });
 
 app.listen(process.env.PORT || PORT, () => {
