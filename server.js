@@ -7,6 +7,7 @@ const PORT = 8000;
 // Parse incoming messages to JSON
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
 // Enabling CORS
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
