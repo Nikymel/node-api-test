@@ -23,6 +23,6 @@ app.get('/api/users', (req, res) => {
     })
 });
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
